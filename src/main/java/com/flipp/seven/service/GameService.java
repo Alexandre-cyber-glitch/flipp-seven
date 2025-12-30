@@ -3,10 +3,7 @@ package com.flipp.seven.service;
 import com.flipp.seven.domain.game.Game;
 import com.flipp.seven.domain.game.GameStatus;
 import com.flipp.seven.domain.player.Player;
-import com.flipp.seven.dto.request.JoinGameRequest;
-import com.flipp.seven.dto.request.ReadyGameRequest;
-import com.flipp.seven.dto.request.RefreshStatusGameRequest;
-import com.flipp.seven.dto.request.StartGameRequest;
+import com.flipp.seven.dto.request.*;
 import com.flipp.seven.dto.response.CreateGameResponse;
 import com.flipp.seven.dto.response.JoinGameResponse;
 import com.flipp.seven.dto.response.RefreshStatusGameResponse;
@@ -30,6 +27,7 @@ public class GameService {
     private final GameRepository gameRepository;
     private final PlayerRepository playerRepository;
     private final CardRepository cardRepository;
+    private final GameManager manager;
 
     /**
      * Create the game by one player -> automatically the master
@@ -70,15 +68,10 @@ public class GameService {
      * @param request ID Game , ID player, name needed - selected by the player
      */
     public void ready(@NonNull ReadyGameRequest request) {
-        var game = gameRepository.getReferenceById(request.getIdGame());
-
         // Hibernate automatically persists the player name and isReady because of cascade
-        for (var player : game.getPlayers()) {
-            if(player.getId().equals(request.getIdPlayer())) {
-                player.setName(request.getNamePlayer());
-                player.setReady(true);
-            }
-        }
+        var player = manager.getPlayerByIdInGame(request.getIdGame(), request.getIdPlayer());
+        player.setName(request.getNamePlayer());
+        player.setReady(true);
     }
 
     /**
@@ -111,12 +104,17 @@ public class GameService {
         return new StartGameResponse(game.getId(), request.getIdPlayer(), true, List.of(), "Game started");
     }
 
+    public void leave(@NonNull LeaveGameRequest request) {
+        var game = gameRepository.getReferenceById(request.getIdGame());
+        var player = manager.getPlayerByIdInGame(request.getIdGame(), request.getIdPlayer());
+        game.getPlayers().remove(player);
+    }
+
     public RefreshStatusGameResponse refreshStatusLobbyGame(@NonNull RefreshStatusGameRequest request) {
         var game = gameRepository.getReferenceById(request.getIdGame());
 
         // Find players ready
         var playersReady = game.getPlayers().stream().filter(Player::isReady).map(Player::getName).toList();
-
         return new  RefreshStatusGameResponse(game.getId(), request.getIdPlayer(), playersReady, game.isStarted(), game.getStartTime());
     }
 }

@@ -30,6 +30,13 @@ public class GameController
         return ResponseEntity.status(HttpStatus.CREATED).body(resp);
     }
 
+    @PostMapping("/leave")
+    public ResponseEntity<JoinGameResponse> leave(@RequestBody LeaveGameRequest request) {
+        gameService.leave(request);
+        return ResponseEntity.noContent().build();
+    }
+
+
     @PostMapping("/ready")
     public ResponseEntity<JoinGameResponse> ready(@RequestBody ReadyGameRequest request) {
         gameService.ready(request);
