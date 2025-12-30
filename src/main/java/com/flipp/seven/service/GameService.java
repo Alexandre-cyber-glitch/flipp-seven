@@ -5,9 +5,11 @@ import com.flipp.seven.domain.game.GameStatus;
 import com.flipp.seven.domain.player.Player;
 import com.flipp.seven.dto.request.JoinGameRequest;
 import com.flipp.seven.dto.request.ReadyGameRequest;
+import com.flipp.seven.dto.request.RefreshStatusGameRequest;
 import com.flipp.seven.dto.request.StartGameRequest;
 import com.flipp.seven.dto.response.CreateGameResponse;
 import com.flipp.seven.dto.response.JoinGameResponse;
+import com.flipp.seven.dto.response.RefreshStatusGameResponse;
 import com.flipp.seven.dto.response.StartGameResponse;
 import com.flipp.seven.repository.CardRepository;
 import com.flipp.seven.repository.GameRepository;
@@ -18,6 +20,7 @@ import lombok.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -101,8 +104,19 @@ public class GameService {
 
         // Everything ok, start the game
         game.setStatus(GameStatus.IN_PROGRESS);
-        gameRepository.save(game); // persist the new status
+        game.setStarted(true);
+        game.setStartTime(LocalDateTime.now().plusSeconds(10)); // start in 10s
+        gameRepository.save(game); // persist the new status and start date time
+
         return new StartGameResponse(game.getId(), request.getIdPlayer(), true, List.of(), "Game started");
     }
 
+    public RefreshStatusGameResponse refreshStatusLobbyGame(@NonNull RefreshStatusGameRequest request) {
+        var game = gameRepository.getReferenceById(request.getIdGame());
+
+        // Find players ready
+        var playersReady = game.getPlayers().stream().filter(Player::isReady).map(Player::getName).toList();
+
+        return new  RefreshStatusGameResponse(game.getId(), request.getIdPlayer(), playersReady, game.isStarted(), game.getStartTime());
+    }
 }

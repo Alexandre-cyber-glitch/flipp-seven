@@ -1,10 +1,10 @@
 package com.flipp.seven.controller;
 
-import com.flipp.seven.dto.request.CreateGameRequest;
-import com.flipp.seven.dto.request.JoinGameRequest;
-import com.flipp.seven.dto.request.ReadyGameRequest;
+import com.flipp.seven.dto.request.*;
 import com.flipp.seven.dto.response.CreateGameResponse;
 import com.flipp.seven.dto.response.JoinGameResponse;
+import com.flipp.seven.dto.response.RefreshStatusGameResponse;
+import com.flipp.seven.dto.response.StartGameResponse;
 import com.flipp.seven.service.GameService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,5 +34,17 @@ public class GameController
     public ResponseEntity<JoinGameResponse> ready(@RequestBody ReadyGameRequest request) {
         gameService.ready(request);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/start")
+    public ResponseEntity<StartGameResponse> start(@RequestBody StartGameRequest request) {
+        var resp = gameService.start(request);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(resp);
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<RefreshStatusGameResponse> refresh(@RequestBody RefreshStatusGameRequest request) {
+        var resp = gameService.refreshStatusLobbyGame(request);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(resp);
     }
 }

@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,4 +41,8 @@ public class Game {
 
     @ManyToMany
     private List<Card> discardPile = new ArrayList<>();
+
+    private boolean isStarted = false;
+
+    private LocalDateTime startTime;
 }
