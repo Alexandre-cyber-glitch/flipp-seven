@@ -25,8 +25,6 @@ import java.util.List;
 @AllArgsConstructor
 public class GameService {
     private final GameRepository gameRepository;
-    private final PlayerRepository playerRepository;
-    private final CardRepository cardRepository;
     private final GameManager manager;
 
     /**

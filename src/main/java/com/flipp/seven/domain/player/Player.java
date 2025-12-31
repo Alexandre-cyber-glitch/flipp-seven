@@ -2,6 +2,7 @@ package com.flipp.seven.domain.player;
 
 import com.flipp.seven.domain.card.Card;
 import com.flipp.seven.domain.game.Game;
+import com.flipp.seven.domain.player.power.HeroicPowerType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,4 +42,7 @@ public class Player {
     private boolean isReady = false;
 
     private boolean isMaster = false;
+
+    @Enumerated(EnumType.STRING)
+    private HeroicPowerType heroicPowerType = HeroicPowerType.NONE;
 }
