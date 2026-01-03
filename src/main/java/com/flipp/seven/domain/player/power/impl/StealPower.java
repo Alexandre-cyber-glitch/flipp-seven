@@ -4,7 +4,7 @@ import com.flipp.seven.domain.game.Game;
 import com.flipp.seven.domain.player.Player;
 import com.flipp.seven.domain.player.power.HeroicPower;
 
-public class DrawExtraCardPower implements HeroicPower {
+public class StealPower implements HeroicPower {
 
     @Override
     public boolean canActivate(Game game, Player player) {

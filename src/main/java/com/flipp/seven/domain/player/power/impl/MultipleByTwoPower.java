@@ -13,8 +13,7 @@ public class MultipleByTwoPower implements HeroicPower {
 
     @Override
     public boolean canActivate(Game game, Player player) {
-        //TODO
-        return false;
+        return player.isHeroicPowerActive();
     }
 
     @Override

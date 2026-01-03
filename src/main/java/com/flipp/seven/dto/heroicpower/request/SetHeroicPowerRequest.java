@@ -1,11 +1,12 @@
-package com.flipp.seven.dto.response;
+package com.flipp.seven.dto.heroicpower.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@Data
 @AllArgsConstructor
-public class CreateGameResponse {
+@Data
+public class SetHeroicPowerRequest {
     private Long idGame;
     private Long idPlayer;
+    private String idHeroic;
 }

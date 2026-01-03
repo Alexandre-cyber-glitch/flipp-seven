@@ -1,4 +1,4 @@
-package com.flipp.seven.service;
+package com.flipp.seven.manager;
 
 import com.flipp.seven.domain.player.Player;
 import com.flipp.seven.repository.GameRepository;

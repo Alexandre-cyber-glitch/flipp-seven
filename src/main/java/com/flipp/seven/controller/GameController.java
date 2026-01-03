@@ -1,10 +1,10 @@
 package com.flipp.seven.controller;
 
-import com.flipp.seven.dto.request.*;
-import com.flipp.seven.dto.response.CreateGameResponse;
-import com.flipp.seven.dto.response.JoinGameResponse;
-import com.flipp.seven.dto.response.RefreshStatusGameResponse;
-import com.flipp.seven.dto.response.StartGameResponse;
+import com.flipp.seven.dto.game.request.*;
+import com.flipp.seven.dto.game.response.CreateGameResponse;
+import com.flipp.seven.dto.game.response.JoinGameResponse;
+import com.flipp.seven.dto.game.response.RefreshStatusGameResponse;
+import com.flipp.seven.dto.game.response.StartGameResponse;
 import com.flipp.seven.service.GameService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -35,7 +35,6 @@ public class GameController
         gameService.leave(request);
         return ResponseEntity.noContent().build();
     }
-
 
     @PostMapping("/ready")
     public ResponseEntity<JoinGameResponse> ready(@RequestBody ReadyGameRequest request) {

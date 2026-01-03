@@ -10,7 +10,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -43,6 +45,12 @@ public class Player {
 
     private boolean isMaster = false;
 
+//    @ElementCollection
+//    @Enumerated(EnumType.STRING)
+//    private Set<HeroicPowerType> proposedHeroicPowers = new HashSet<>();
+
     @Enumerated(EnumType.STRING)
     private HeroicPowerType heroicPowerType = HeroicPowerType.NONE;
+
+    private boolean heroicPowerActive = false;
 }

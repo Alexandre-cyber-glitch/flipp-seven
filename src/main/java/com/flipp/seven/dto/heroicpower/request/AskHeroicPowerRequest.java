@@ -1,11 +1,11 @@
-package com.flipp.seven.dto.request;
+package com.flipp.seven.dto.heroicpower.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class RefreshStatusGameRequest {
+public class AskHeroicPowerRequest {
     private Long idGame;
     private Long idPlayer;
 }
