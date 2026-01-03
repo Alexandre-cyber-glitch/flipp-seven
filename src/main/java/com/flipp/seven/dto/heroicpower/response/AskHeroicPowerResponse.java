@@ -12,5 +12,5 @@ import java.util.List;
 public class AskHeroicPowerResponse {
     private Long idGame;
     private Long idPlayer;
-    List<HeroicPowerChoice> choices;
+    List<HeroicPowerDto> choices;
 }

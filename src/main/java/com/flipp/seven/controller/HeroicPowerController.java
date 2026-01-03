@@ -23,12 +23,12 @@ public class HeroicPowerController {
     @PostMapping("/askchoice")
     public ResponseEntity<AskHeroicPowerResponse> askHeroicPowerChoice(@RequestBody AskHeroicPowerRequest request) {
         var resp = heroicPowerService.askChoice(request);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(resp);
+        return ResponseEntity.ok(resp);
     }
 
     @PostMapping("/setchoice")
     public ResponseEntity<SetHeroicPowerResponse> setHeroicPowerChoice(@RequestBody SetHeroicPowerRequest request) {
         var resp = heroicPowerService.setChoice(request);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(resp);
+        return ResponseEntity.ok(resp);
     }
 }

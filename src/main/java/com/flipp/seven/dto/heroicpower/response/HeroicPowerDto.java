@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-public class HeroicPowerChoice {
+public class HeroicPowerDto {
 
     private String id;
     private String label;

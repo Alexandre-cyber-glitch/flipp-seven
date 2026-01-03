@@ -5,7 +5,6 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class StartGameRequest {
+public class InitialStatusGameRequest {
     private Long idGame;
-    private Long idPlayer;
 }

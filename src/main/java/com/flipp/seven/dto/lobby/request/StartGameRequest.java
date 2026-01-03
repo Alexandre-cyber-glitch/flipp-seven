@@ -1,11 +1,11 @@
-package com.flipp.seven.dto.game.response;
+package com.flipp.seven.dto.lobby.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@Data
 @AllArgsConstructor
-public class CreateGameResponse {
+@Data
+public class StartGameRequest {
     private Long idGame;
     private Long idPlayer;
 }

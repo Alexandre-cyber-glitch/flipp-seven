@@ -1,4 +1,4 @@
-package com.flipp.seven.dto.game.request;
+package com.flipp.seven.dto.lobby.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -45,12 +45,10 @@ public class Player {
 
     private boolean isMaster = false;
 
-//    @ElementCollection
-//    @Enumerated(EnumType.STRING)
-//    private Set<HeroicPowerType> proposedHeroicPowers = new HashSet<>();
-
     @Enumerated(EnumType.STRING)
     private HeroicPowerType heroicPowerType = HeroicPowerType.NONE;
 
     private boolean heroicPowerActive = false;
+
+    private int order;
 }
