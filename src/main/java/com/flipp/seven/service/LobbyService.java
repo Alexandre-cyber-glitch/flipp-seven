@@ -105,6 +105,10 @@ public class LobbyService {
         var game = gameRepository.getReferenceById(request.getIdGame());
         var player = manager.getPlayerByIdInGame(request.getIdGame(), request.getIdPlayer());
         game.getPlayers().remove(player);
+
+        if(game.getPlayers().isEmpty() || player.isMaster()){
+            gameRepository.delete(game);
+        }
     }
 
     /**
