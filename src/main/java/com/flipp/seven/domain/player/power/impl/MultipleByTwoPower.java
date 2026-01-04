@@ -7,11 +7,6 @@ import com.flipp.seven.domain.player.power.HeroicPower;
 public class MultipleByTwoPower implements HeroicPower {
 
     @Override
-    public String getName() {
-        return "King of Double";
-    }
-
-    @Override
     public boolean canActivate(Game game, Player player) {
         return player.isHeroicPowerActive();
     }
